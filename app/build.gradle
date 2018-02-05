@@ -1,0 +1,53 @@
+apply plugin: 'com.android.application'
+android {
+    signingConfigs {
+        release {
+            keyAlias 'my-key-alias'
+            keyPassword 'lizhuoyuan'
+            storeFile file('/Users/dongfanggouwu-xiong/Desktop/PackageProject/my-release-key.keystore')
+            storePassword 'lizhuoyuan'
+        }
+    }
+    compileSdkVersion 26
+    buildToolsVersion "25.0.3"
+    defaultConfig {
+        applicationId "com.example.dongfanggouwu_zy.packageproject"
+        minSdkVersion 15
+        targetSdkVersion 26
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    //配置多版本的apk
+    productFlavors {
+        oneplus {
+            applicationId "com.android.application.oneplus"
+            manifestPlaceholders = [app_name: "一加版package"]
+            resValue("string", "baseUrl", "www.oneplus.com")   //配置服务器url
+            resValue("string", "name", "一加")
+        }
+        xiaomi {
+            applicationId "com.android.application.mi"
+            manifestPlaceholders = [app_name: "小米package"]
+            resValue("string", "baseUrl", "www.xiaomi.com")     //配置服务器url
+            resValue("string", "name", "小米")
+        }
+    }
+    dependencies {
+        compile fileTree(dir: 'libs', include: ['*.jar'])
+        androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+            exclude group: 'com.android.support', module: 'support-annotations'
+        })
+        compile 'com.android.support:appcompat-v7:26.+'
+        compile 'com.android.support.constraint:constraint-layout:1.0.0-beta4'
+        testCompile 'junit:junit:4.12'
+    }
+}
+dependencies {
+}
