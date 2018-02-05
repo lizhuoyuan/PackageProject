@@ -14,8 +14,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         textView = (TextView) findViewById(R.id.text);
         //获取radle里配置的url/name
-        String url = getResources().getString(R.string.name);
-        textView.setText(url + ',' + Constant.BaseUrl());
+        String name = getResources().getString(R.string.name);
+        textView.setText(name + ',' + Constant.BaseUrl());
 
 
     }
